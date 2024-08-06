@@ -1,9 +1,19 @@
 <div class="container">
-  <h1><%= @task.title %></h1>
+  <div class="d-flex justify-content-between align-items-end">
+    <h1><%= @task.title %></h1>
+    <%= link_to edit_task_path, class: 'btn btn-primary mt-3' do %>
+      Edit Task
+    <% end %>
+  </div>
   <p><%= @task.details %></p>
   <% if @task.completed %>
     <p>This task is completed</p>
   <% else %>
     <p>This task is not completed</p>
   <% end %>
+  <div>
+    <%= link_to tasks_path, class: 'btn btn-primary mt-3' do %>
+      Return to Tasks
+    <% end %>
+  </div>
 </div>

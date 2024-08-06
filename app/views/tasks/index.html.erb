@@ -2,9 +2,21 @@
   <div class="d-flex">
     <h1>Tasks</h1>
   </div>
-  <ul class="list">
+  <ul class="list" style="list-style-type: none">
     <% @tasks.each do |task| %>
-      <li><%= link_to task.title, task_path(task) %></li>
+
+      <% if task.completed %>
+        <li><i class="fa-regular fa-square-check"></i> <%= link_to task.title, task_path(task) %>
+        <%= link_to task_path(task), data: { turbo_method: :delete, turbo_confirm: "Delete #{task.title}?" } do  %>
+        <i class="fa-solid fa-trash"></i>
+        <% end %>
+        </li>
+      <% else %>
+        <li><i class="fa-regular fa-square"></i> <%= link_to task.title, task_path(task) %>
+        <%= link_to task_path(task), data: { turbo_method: :delete, turbo_confirm: "Delete #{task.title}?" } do  %>
+        <i class="fa-solid fa-trash"></i></li>
+        <% end %>
+      <% end %>
     <% end %>
   </ul>
   <div>
